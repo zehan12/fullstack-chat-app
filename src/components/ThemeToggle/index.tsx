@@ -15,9 +15,7 @@ export const ThemeToggle = () => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
   const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
-  const isDark: boolean =
-    theme === "dark" || localStorage.getItem("theme") === "dark";
-
+  const isDark: boolean = theme === "dark";
   useEffect(() => setMounted(true), []);
 
   if (!mounted) return null;
