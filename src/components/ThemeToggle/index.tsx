@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { CloudMoon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { Button } from "../ui/button";
 
 const framer_theme = {
   initial: { y: 30 },
@@ -21,7 +22,7 @@ export const ThemeToggle = () => {
   if (!mounted) return null;
 
   return (
-    <button className="overflow-hidden custom-btn" onClick={toggleTheme}>
+    <Button variant={"ghost"} className="overflow-hidden custom-btn" onClick={toggleTheme}>
       <AnimatePresence mode="wait" initial={false}>
         <motion.span {...framer_theme} className="flex" key={isDark.toString()}>
           {isDark ? (
@@ -31,6 +32,6 @@ export const ThemeToggle = () => {
           )}
         </motion.span>
       </AnimatePresence>
-    </button>
+    </Button>
   );
 };
