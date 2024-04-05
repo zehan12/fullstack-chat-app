@@ -1,4 +1,4 @@
-export const conversations = [
+export const conversationsData = [
   {
     _id: "1",
     admin: "user1",

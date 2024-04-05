@@ -1,4 +1,4 @@
-export const messages = [
+export const messagesData = [
   {
     _id: "1",
     content: "Hello everyone!",

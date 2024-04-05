@@ -6,10 +6,12 @@ import {
   User,
 } from "lucide-react";
 import { Input } from "../ui/input";
-import { ThemeToggle } from "..";
+import { conversationsData } from "@/mocks";
+import { Conversation } from "./conversations";
+import { ThemeToggle } from "../shared";
 
-export const MyChats = () => {
-  const conversations = [];
+export const SidebarPanel = () => {
+  const conversations: any = conversationsData;
 
   return (
     <div className="w-1/4 border-gray-600 border-r">
@@ -37,6 +39,7 @@ export const MyChats = () => {
         </div>
       </div>
       <div className="my-3 flex flex-col gap-0 max-h-[80%] overflow-auto">
+        {conversations?.length && <Conversation conversation={conversations} />}
         {conversations?.length === 0 && (
           <>
             <p className="text-center text-gray-500 text-sm mt-3">

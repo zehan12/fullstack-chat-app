@@ -1,4 +1,3 @@
-import { ThemeToggle } from "./ThemeToggle";
-import { MyChats } from "./MyChats";
+import { SidebarPanel } from "./sidebar-panel";
 
-export { ThemeToggle, MyChats };
+export { SidebarPanel };
