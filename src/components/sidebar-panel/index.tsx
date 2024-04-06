@@ -39,7 +39,9 @@ export const SidebarPanel = () => {
         </div>
       </div>
       <div className="my-3 flex flex-col gap-0 max-h-[80%] overflow-auto">
-        {conversations?.length && <Conversation conversation={conversations} />}
+        {conversationsData.map((chat) => (
+          <Conversation key={chat._id} conversation={chat} />
+        ))}
         {conversations?.length === 0 && (
           <>
             <p className="text-center text-gray-500 text-sm mt-3">

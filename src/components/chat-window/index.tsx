@@ -1,12 +1,12 @@
 "use client";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Video, X } from "lucide-react";
-import MessageInput from "./message-input";
-import MessageContainer from "./message-container";
-import ChatPlaceHolder from "@/components/home/chat-placeholder";
-import GroupMembersModal from "./group-members-modal";
 
-const RightPanel = () => {
+import { X, Video } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { ChatPlaceHolder } from "./chat-placeholder";
+import { MessageContainer } from "./message-container";
+import { MessageInput } from "./message-input";
+
+export const ChatWindow = () => {
   const selectedConversation = null;
   if (!selectedConversation) return <ChatPlaceHolder />;
 
