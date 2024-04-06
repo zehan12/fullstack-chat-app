@@ -18,4 +18,10 @@ export class UserService {
     newUser.password = '**********';
     return newUser;
   }
+
+  async findByEmail(email: string) {
+    return await this.prisma.user.findUnique({
+      where: { email },
+    });
+  }
 }
