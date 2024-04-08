@@ -1,5 +1,5 @@
-import { ChatBubble } from "@/components/shared";
-import { messagesData } from "@/mocks";
+import { ChatBubble } from "../../shared";
+import { messagesData } from "../../../mocks";
 
 export const MessageContainer = () => {
   return (

@@ -1,4 +1,4 @@
-import { formatDate } from "@/utils/date.utils";
+import { formatDate } from "../../../utils/date.utils";
 import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
 import { ImageIcon, Users, VideoIcon } from "lucide-react";
 import { MessageSeen } from "../../svg";

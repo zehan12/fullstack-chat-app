@@ -6,7 +6,7 @@ import {
   User,
 } from "lucide-react";
 import { Input } from "../ui/input";
-import { conversationsData } from "@/mocks";
+import { conversationsData } from "../../mocks";
 import { Conversation } from "./conversations";
 import { ThemeToggle } from "../shared";
 

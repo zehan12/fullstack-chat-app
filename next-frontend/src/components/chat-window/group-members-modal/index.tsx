@@ -5,10 +5,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+} from "../../ui/dialog";
+import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
 import { Crown } from "lucide-react";
-import { usersData } from "@/mocks";
+import { usersData } from "../../../mocks";
 
 const GroupMembersDialog = () => {
   return (

@@ -1,7 +1,7 @@
 import { Laugh, Mic, Plus, Send } from "lucide-react";
-import { Input } from "@/components/ui/input";
+import { Input } from "../../ui/input";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "../../ui/button";
 
 export const MessageInput = () => {
   const [msgText, setMsgText] = useState("");

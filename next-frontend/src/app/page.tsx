@@ -1,4 +1,4 @@
-import { ChatWindow, SidebarPanel } from "@/components";
+import { ChatWindow, SidebarPanel } from "../components";
 
 export default function Home() {
   return (
