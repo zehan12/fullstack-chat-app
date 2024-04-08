@@ -46,4 +46,26 @@ export class AuthService {
 
     throw new UnauthorizedException('user or password is not correct');
   }
+
+  async refreshToken(user: any) {
+    const payload = {
+      email: user.email,
+      sub: {
+        name: user.name,
+        sub: user.sub,
+      },
+    };
+    return {
+      tokens: {
+        accessToken: await this.jwtService.signAsync(payload, {
+          expiresIn: this.configService.get('jwt.accessToken.expiresIn'),
+          secret: this.configService.get('jwt.accessToken.secretKey'),
+        }),
+        refreshToken: await this.jwtService.signAsync(payload, {
+          expiresIn: this.configService.get('jwt.refreshToken.expiresIn'),
+          secret: this.configService.get('jwt.refreshToken.secretKey'),
+        }),
+      },
+    };
+  }
 }
