@@ -8,21 +8,16 @@ export const authOptions: NextAuthOptions = {
       name: "Credentials",
       credentials: {
         email: {
-          label: "Email",
-          type: "email",
-          placeholder: "email",
+          label: "email",
+          type: "text",
+          placeholder: "jsmith",
         },
-        password: {
-          label: "Password",
-          type: "password",
-          placeholder: "password",
-        },
+        password: { label: "Password", type: "password" },
       },
-      async authorize(credentials: any, req: any) {
-        console.log(credentials,"cred")
+      async authorize(credentials, req) {
         if (!credentials?.email || !credentials?.password) return null;
         const { email, password } = credentials;
-        const res = await fetch("https://localhost:4000/auth/login", {
+        const res = await fetch("http://localhost:4000/auth/login", {
           method: "POST",
           body: JSON.stringify({
             email,
@@ -32,14 +27,12 @@ export const authOptions: NextAuthOptions = {
             "Content-Type": "application/json",
           },
         });
-        console.log(res, "respone");
         if (res.status == 401) {
           console.log(res.statusText);
 
           return null;
         }
         const user = await res.json();
-        console.log(user, "user");
         return user;
       },
     }),

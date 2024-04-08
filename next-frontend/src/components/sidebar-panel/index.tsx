@@ -9,6 +9,7 @@ import { Input } from "../ui/input";
 import { conversationsData } from "../../mocks";
 import { Conversation } from "./conversations";
 import { ThemeToggle } from "../shared";
+import { SignInButton } from "../auth/SignInButton";
 
 export const SidebarPanel = () => {
   const conversations: any = conversationsData;
@@ -20,6 +21,7 @@ export const SidebarPanel = () => {
           <User size={24} />
           <div className="flex items-center gap-3">
             <MessageSquareDiff size={20} /> <ThemeToggle />
+            <SignInButton />
             <LogOut size={20} className="cursor-pointer" />
           </div>
         </div>
