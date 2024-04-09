@@ -3,6 +3,7 @@ import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions: NextAuthOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -10,9 +11,13 @@ export const authOptions: NextAuthOptions = {
         email: {
           label: "email",
           type: "text",
-          placeholder: "jsmith",
+          placeholder: "email",
         },
-        password: { label: "Password", type: "password" },
+        password: {
+          label: "Password",
+          type: "password",
+          placeholder: "password",
+        },
       },
       async authorize(credentials, req) {
         if (!credentials?.email || !credentials?.password) return null;

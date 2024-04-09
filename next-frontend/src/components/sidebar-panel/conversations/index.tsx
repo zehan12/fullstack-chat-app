@@ -1,7 +1,7 @@
 import { formatDate } from "../../../utils/date.utils";
 import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
 import { ImageIcon, Users, VideoIcon } from "lucide-react";
-import { MessageSeen } from "../../svg";
+import { Icons } from "@/components/svg";
 
 export const Conversation = ({ conversation }: { conversation: any }) => {
   const conversationImage = conversation.groupImage;
@@ -39,7 +39,7 @@ export const Conversation = ({ conversation }: { conversation: any }) => {
             </span>
           </div>
           <p className="text-[12px] mt-1 text-gray-500 flex items-center gap-1 ">
-            {lastMessage?.sender === authUser?._id ? <MessageSeen /> : ""}
+            {lastMessage?.sender === authUser?._id ? <Icons.messageSeen /> : ""}
             {conversation.isGroup && <Users size={16} />}
             {!lastMessage && "Say Hi!"}
             {lastMessageType === "text" && lastMessage?.content.length > 30 ? (
