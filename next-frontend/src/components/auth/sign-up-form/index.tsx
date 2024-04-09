@@ -48,7 +48,6 @@ export const SignUpForm = ({ className, ...props }: SignUpFormProps) => {
       },
     });
     const responseJson = await response.json();
-    console.log(responseJson,"res")
     if (!responseJson.error) router.push("/api/auth/signin");
   };
 
