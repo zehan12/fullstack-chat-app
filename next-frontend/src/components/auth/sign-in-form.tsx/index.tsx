@@ -26,7 +26,7 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
       <form onSubmit={onSubmit}>
         <div className="grid gap-2">
           <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="email">
+            <Label className="my-1 text-xs" htmlFor="email">
               Email
             </Label>
             <Input
@@ -40,11 +40,22 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
             />
           </div>
           <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="email">
+            <Label className="my-1 text-xs" htmlFor="email">
               Password
             </Label>
             <Input
               id="password"
+              placeholder="***********"
+              type="password"
+              disabled={isLoading}
+            />
+          </div>
+          <div className="grid gap-1">
+            <Label className="my-1 text-xs" htmlFor="email">
+              Confirm Password
+            </Label>
+            <Input
+              id="cPassword"
               placeholder="***********"
               type="password"
               disabled={isLoading}
