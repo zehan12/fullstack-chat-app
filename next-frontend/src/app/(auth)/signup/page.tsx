@@ -1,4 +1,4 @@
-import { SignInForm } from "@/components";
+import { SignUpForm } from "@/components";
 import Link from "next/link";
 
 const Signup = () => {
@@ -13,7 +13,7 @@ const Signup = () => {
             Enter your email below to create your account
           </p>
         </div>
-        <SignInForm />
+        <SignUpForm />
         <p className="px-8 text-center text-sm text-muted-foreground">
           By clicking continue, you agree to our{" "}
           <Link

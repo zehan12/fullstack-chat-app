@@ -9,10 +9,14 @@ import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import { HTMLAttributes, useState } from "react";
 import { signUpSchema } from "@/schema";
+import { PasswordStrength } from "../password-strength";
+import PasswordChecklist from "react-password-checklist";
 
 interface SignUpFormProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const SignUpForm = ({ className, ...props }: SignUpFormProps) => {
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
   const {
     register,
     handleSubmit,
@@ -23,9 +27,6 @@ export const SignUpForm = ({ className, ...props }: SignUpFormProps) => {
 
   const onSubmit = (data: FieldValues) => {
     setIsLoading(true);
-
-    console.log(data, "data");
-    console.log(errors, "errros");
 
     setTimeout(() => {
       setIsLoading(false);
@@ -60,9 +61,12 @@ export const SignUpForm = ({ className, ...props }: SignUpFormProps) => {
               id="password"
               placeholder="***********"
               type="password"
+              name="password"
+              onChange={(e) => setPassword(e.target.value)}
               disabled={isLoading}
             />
           </div>
+          <PasswordStrength password={password} />
           <div className="grid gap-1">
             <Label className="my-1 text-xs" htmlFor="email">
               Confirm Password
@@ -72,9 +76,18 @@ export const SignUpForm = ({ className, ...props }: SignUpFormProps) => {
               id="confirm"
               placeholder="***********"
               type="password"
+              name="confirm"
+              onChange={(e) => setConfirm(e.target.value)}
               disabled={isLoading}
             />
           </div>
+          <PasswordChecklist
+            rules={["minLength", "specialChar", "number", "capital", "match"]}
+            minLength={5}
+            value={password}
+            valueAgain={confirm}
+            onChange={(isValid) => {}}
+          />
           <Button type="submit" disabled={isLoading}>
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
