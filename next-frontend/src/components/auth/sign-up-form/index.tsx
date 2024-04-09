@@ -27,16 +27,44 @@ export const SignUpForm = ({ className, ...props }: SignUpFormProps) => {
 
   const onSubmit = (data: FieldValues) => {
     setIsLoading(true);
-
+    registerApi(data);
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);
+  };
+
+  const registerApi = async (data: FieldValues) => {
+    const response = await fetch("http://localhost:4000/auth/register", {
+      method: "POST",
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const responseJson = response.json();
+    console.log(responseJson, "output");
   };
 
   return (
     <div className={cn("grid gap-6", className)} {...props}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid gap-2">
+          <div className="grid gap-1">
+            <Label className="my-1 text-xs" htmlFor="email">
+              Name
+            </Label>
+            <Input
+              {...register("name")}
+              id="name"
+              placeholder="Andrew Tate"
+              type="text"
+              disabled={isLoading}
+            />
+          </div>
           <div className="grid gap-1">
             <Label className="my-1 text-xs" htmlFor="email">
               Email
