@@ -11,10 +11,12 @@ import { HTMLAttributes, useState } from "react";
 import { signUpSchema } from "@/schema";
 import { PasswordStrength } from "../password-strength";
 import PasswordChecklist from "react-password-checklist";
+import { useRouter } from "next/navigation";
 
 interface SignUpFormProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const SignUpForm = ({ className, ...props }: SignUpFormProps) => {
+  const router = useRouter();
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const {
@@ -45,8 +47,9 @@ export const SignUpForm = ({ className, ...props }: SignUpFormProps) => {
         "Content-Type": "application/json",
       },
     });
-    const responseJson = response.json();
-    console.log(responseJson, "output");
+    const responseJson = await response.json();
+    console.log(responseJson,"res")
+    if (!responseJson.error) router.push("/api/auth/signin");
   };
 
   return (
