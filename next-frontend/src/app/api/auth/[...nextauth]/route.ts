@@ -10,7 +10,7 @@ const refreshToken = async (token: JWT): Promise<JWT> => {
       authorization: `Refresh ${token.tokens.refreshToken}`,
     },
   });
-  const res = await response.json();
+  const res = await response.json()
 
   return {
     ...token,

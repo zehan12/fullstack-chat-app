@@ -1,6 +1,5 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
-import { headers } from "next/headers";
 
 type Props = {
   params: {
@@ -12,19 +11,31 @@ const UserProfile = async ({ params }: Props) => {
   const session = await getServerSession(authOptions);
 
   const userDetailsApi = async () => {
-    const response = await fetch(`http:localhost:4000/user/${params.id}`, {
-      method: "GET",
-      headers: {
-        authorization: `Bearer ${session?.tokens.accessToken}`,
-        "Content-Type": "application/json",
-      },
-    });
-    const responseJson = await response.json();
+    try {
+      const response = await fetch(`http:localhost:4000/user/${params.id}`, {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${session?.tokens.accessToken}`,
+          "Content-Type": "application/json",
+        },
+      });
+      const responseJson = await response.json();
+      return await responseJson;
+    } catch (error: unknown) {
+      console.log(error);
+    }
   };
 
-  userDetailsApi();
+  const data = await userDetailsApi();
 
-  return <div>user profile{params.id}</div>;
+  return (
+    <div>
+      {'{ "'}id{'"'}: {params.id},{' "'}login email{'" '}: {' "'}
+      {session?.user.email}
+      {'" }'}
+      <div>{data && JSON.stringify(data, null, 2)}</div>
+    </div>
+  );
 };
 
 export default UserProfile;

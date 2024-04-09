@@ -5,7 +5,7 @@ import { compare } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 
-const EXPIRY_TIME = 3600 * 1000; // 1 hour in milliseconds
+const EXPIRY_TIME = 3600 * 1000 * 24 * 7; // 1 hour * 24 hours/day * 7 days = 1 week in milliseconds
 
 @Injectable()
 export class AuthService {
