@@ -1,5 +1,5 @@
 import { SidebarPanel } from "./sidebar-panel";
 import { ChatWindow } from "./chat-window";
-import { SignInForm } from "./auth/sign-in-form.tsx";
+import { SignUpForm } from "./auth/sign-up-form";
 
-export { SidebarPanel, ChatWindow, SignInForm };
+export { SidebarPanel, ChatWindow, SignUpForm };

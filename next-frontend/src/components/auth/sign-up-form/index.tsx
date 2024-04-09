@@ -1,35 +1,47 @@
 "use client";
 
+import { FieldValues, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Icons } from "@/components/svg";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
-import { HTMLAttributes, SyntheticEvent, useState } from "react";
+import { HTMLAttributes, useState } from "react";
+import { signUpSchema } from "@/schema";
 
-interface SignInFormProps extends HTMLAttributes<HTMLDivElement> {}
+interface SignUpFormProps extends HTMLAttributes<HTMLDivElement> {}
 
-export function SignInForm({ className, ...props }: SignInFormProps) {
+export const SignUpForm = ({ className, ...props }: SignUpFormProps) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({ resolver: zodResolver(signUpSchema) });
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  async function onSubmit(event: SyntheticEvent) {
-    event.preventDefault();
+  const onSubmit = (data: FieldValues) => {
     setIsLoading(true);
+
+    console.log(data, "data");
+    console.log(errors, "errros");
 
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);
-  }
+  };
 
   return (
     <div className={cn("grid gap-6", className)} {...props}>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid gap-2">
           <div className="grid gap-1">
             <Label className="my-1 text-xs" htmlFor="email">
               Email
             </Label>
             <Input
+              {...register("email")}
               id="email"
               placeholder="name@example.com"
               type="email"
@@ -44,6 +56,7 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
               Password
             </Label>
             <Input
+              {...register("password")}
               id="password"
               placeholder="***********"
               type="password"
@@ -55,13 +68,14 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
               Confirm Password
             </Label>
             <Input
-              id="cPassword"
+              {...register("confirm")}
+              id="confirm"
               placeholder="***********"
               type="password"
               disabled={isLoading}
             />
           </div>
-          <Button disabled={isLoading}>
+          <Button type="submit" disabled={isLoading}>
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
@@ -89,4 +103,4 @@ export function SignInForm({ className, ...props }: SignInFormProps) {
       </Button>
     </div>
   );
-}
+};
