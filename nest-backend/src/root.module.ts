@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { UserService } from './user/user.service';
 import { AuthConfig } from './shared/config';
 import { JwtModule } from '@nestjs/jwt';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { JwtModule } from '@nestjs/jwt';
     AuthModule,
     JwtModule,
   ],
-  controllers: [AuthController],
+  controllers: [AppController, AuthController],
   providers: [PrismaService, AuthService, UserService],
 })
 export class RootModule {}
